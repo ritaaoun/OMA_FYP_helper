@@ -12,6 +12,8 @@ public class TrainTest {
 			BufferedReader br = new BufferedReader(new FileReader("resources\\all tweets.txt"));
 			PrintWriter train = new PrintWriter("resources\\train tweets.txt", "UTF-8");
 			PrintWriter trainLabels = new PrintWriter("resources\\train tweet labels.txt", "UTF-8");
+			PrintWriter dev = new PrintWriter("resources\\dev tweets.txt","UTF-8");
+			PrintWriter devLabels = new PrintWriter("resources\\dev tweet labels.txt","UTF-8");
 			PrintWriter test = new PrintWriter("resources\\test tweets.txt", "UTF-8");
 			PrintWriter testLabels = new PrintWriter("resources\\test tweet labels.txt", "UTF-8");
 			String line = "";
@@ -36,7 +38,8 @@ public class TrainTest {
 			}
 			br.close();
 			int nbOfTweets = allTweets.size();
-			int nbOfTrainTweets = (int)Math.ceil(nbOfTweets*0.8);
+			int nbOfTrainTweets = (int)Math.ceil(nbOfTweets*0.7);
+			int nbOfDevTweets = nbOfTrainTweets + (int) Math.ceil(nbOfTweets*0.1);
 			
 			for (int i=0; i<nbOfTrainTweets; ++i) {
 				train.println(allTweets.elementAt(i));
@@ -44,7 +47,15 @@ public class TrainTest {
 			}
 			train.close();
 			trainLabels.close();
-			for (int i = nbOfTrainTweets; i<nbOfTweets; ++i) {
+			
+			for (int i = nbOfTrainTweets; i < nbOfDevTweets; ++i) {
+				dev.println(allTweets.elementAt(i));
+				devLabels.println(allLabels.elementAt(i));
+			}
+			dev.close();
+			devLabels.close();
+			
+			for (int i = nbOfDevTweets; i<nbOfTweets; ++i) {
 				test.println(allTweets.elementAt(i));
 				testLabels.println(allLabels.elementAt(i));
 			}
