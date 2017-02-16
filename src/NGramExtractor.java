@@ -3,7 +3,7 @@ import java.util.List;
 
 public class NGramExtractor {
 	public static void main(String[] args) {
-		System.out.println(ngrams(2,"hi     cava      et toii   ?"));
+		System.out.println(charNgrams(2,"hi kifak cava"));
 	}
 	public static List<String> ngrams(int n, String str) {
         List<String> ngrams = new ArrayList<String>();
@@ -18,5 +18,12 @@ public class NGramExtractor {
         for (int i = start; i < end; i++)
             sb.append((i > start ? " " : "") + words[i]);
         return sb.toString();
+    }
+	public static List<String> charNgrams(int n, String str) {
+        List<String> charNgrams = new ArrayList<String>();
+        for (int i = 0; i <= str.length() - n; ++i) {
+            charNgrams.add(str.substring(i, i+n));
+        }
+        return charNgrams;
     }
 }

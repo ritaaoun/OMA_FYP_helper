@@ -9,7 +9,7 @@ public class TrainTest {
 		// TODO Auto-generated method stub
 		try
 		{
-			BufferedReader br = new BufferedReader(new FileReader("resources\\all tweets.txt"));
+			BufferedReader br = new BufferedReader(new FileReader("resources\\all tweets (excluding objective).txt"));
 			PrintWriter train = new PrintWriter("resources\\train tweets.txt", "UTF-8");
 			PrintWriter trainLabels = new PrintWriter("resources\\train tweet labels.txt", "UTF-8");
 			PrintWriter dev = new PrintWriter("resources\\dev tweets.txt","UTF-8");
