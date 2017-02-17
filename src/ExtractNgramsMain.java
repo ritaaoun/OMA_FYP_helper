@@ -6,9 +6,9 @@ import java.util.HashMap;
 public class ExtractNgramsMain {
 	public static void main(String[] args) {
 		for (int threshold = 3; threshold<=5; ++threshold) {
-			extractNgramsFromTrainSet(true, threshold);
+			//extractNgramsFromTrainSet(true, threshold);
 			extractNgramsFromTrainSet(false, threshold);
-			extractCharNgramsFromTrainSet(true, threshold);
+			//extractCharNgramsFromTrainSet(true, threshold);
 		}
 	}
 	public static void extractNgramsFromTrainSet(boolean lemmatized, int frequencyThreshold) {

@@ -1,0 +1,11 @@
+Class 0 precision: 0.5061349693251533
+Class 0 recall: 0.9821428571428571
+Class 0 f-measure: 0.6680161943319837
+Class 1 precision: 0.3333333333333333
+Class 1 recall: 0.01639344262295082
+Class 1 f-measure: 0.03125
+Class 2 precision: 0.3333333333333333
+Class 2 recall: 0.009708737864077669
+Class 2 f-measure: 0.018867924528301886
+Overall average f-measure: 0.23937803962009518
+Overall accuracy: 0.5030120481927711

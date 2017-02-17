@@ -4,18 +4,17 @@ import java.io.PrintWriter;
 
 public class PerformanceEvaluator {
 	public static void main(String[] args) {
-//		String folder = "results\\ngram_threshold_5_not_lemmatized_ngram_features\\";
-//		String costs[] = {"-2", "-1", "-0", "+1", "+2"};
-//		String gammas[] = {"-5", "-4", "-3", "-2", "-1", "-0", "+1", "+2"};
-//		
-//		for (String cost : costs) {
-//			evaluateModel("resources\\dev tweet labels.txt",folder+"models\\linearc"+cost+"P.txt",folder+"results_linearc"+cost+".txt");
-//			for (String gamma : gammas) {
-//				evaluateModel("resources\\dev tweet labels.txt",folder+"models\\rbfc"+cost+"g"+gamma+"P.txt",folder+"results_rbfc"+cost+"g"+gamma+".txt");
-//			}
-//		}
-		evaluateModel("resources\\test tweet labels.txt","results\\baseline_rbfc+2g+1P.txt","results\\results_baseline.txt");
-		evaluateModel("resources\\test tweet labels.txt","results\\ours_rbfc+1g-2P.txt","results\\results_ours.txt");
+		String folder = "results\\not_lemmatized_ngrams_threshold_3\\";
+		String costs[] = {"-2", "-1", "-0", "+1", "+2"};
+		String gammas[] = {"-5", "-4", "-3", "-2", "-1", "-0", "+1", "+2"};
+		
+		for (String cost : costs) {
+			evaluateModel("resources\\dev tweet labels.txt",folder+"models\\linearc"+cost+"P.txt",folder+"results_linearc"+cost+".txt");
+			for (String gamma : gammas) {
+				evaluateModel("resources\\dev tweet labels.txt",folder+"models\\rbfc"+cost+"g"+gamma+"P.txt",folder+"results_rbfc"+cost+"g"+gamma+".txt");
+			}
+		}
+//		evaluateModel("resources\\dev tweet labels.txt",folder+"models\\rbfc-0g-1P.txt",folder+"results_rbfc-0g-1.txt");
 	}
 	public static void evaluateModel(String locationOfActualLabels, String locationOfPredictedLabels, String locationOfOutput) {
 		try {
@@ -56,8 +55,13 @@ public class PerformanceEvaluator {
 					fmeasure = 0;
 					performance.println("Error: There were no tweets predicted to be in class " + pol);
 				}
+				else if (truePol[pol] == 0) {
+					precision = 0;
+					recall = 0;
+					fmeasure = 0;
+				}
 				else {
-					precision = (double)truePol[pol]/(truePol[pol] + falsePol[pol]);
+					precision = (double)truePol[pol]/totalPredictedPol;
 					recall = (double)truePol[pol]/total[pol];
 					fmeasure = 2*precision*recall/(precision+recall);
 					avgFmeasure += fmeasure;
