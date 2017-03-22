@@ -4,17 +4,21 @@ import java.io.PrintWriter;
 
 public class PerformanceEvaluator {
 	public static void main(String[] args) {
-		String folder = "results\\not_lemmatized_ngrams_threshold_3\\";
-		String costs[] = {"-2", "-1", "-0", "+1", "+2"};
-		String gammas[] = {"-5", "-4", "-3", "-2", "-1", "-0", "+1", "+2"};
+		String folder = "results\\not_lemmatized_ngrams_threshold_5\\";
+//		String costs[] = {/*"-2", "-1",*/ "-0", "+1", "+2"};
+//		String gammas[] = {"-5", "-4", "-3", "-2", "-1", "-0", "+1", "+2"};
+//		
+//		for (String cost : costs) {
+//			evaluateModel("resources\\dev tweet labels.txt",folder+"models\\linearc"+cost+"P.txt",folder+"results_linearc"+cost+".txt");
+//			for (String gamma : gammas) {
+//				evaluateModel("resources\\dev tweet labels.txt",folder+"models\\rbfc"+cost+"g"+gamma+"P.txt",folder+"results_rbfc"+cost+"g"+gamma+".txt");
+//			}
+//		}
+//		evaluateModel("resources\\dev tweet labels.txt",folder+"models\\linearc-2P.txt",folder+"results_linearc-2.txt");
+//		evaluateModel("resources\\dev tweet labels.txt",folder+"models\\linearc-1P.txt",folder+"results_linearc-1.txt");
 		
-		for (String cost : costs) {
-			evaluateModel("resources\\dev tweet labels.txt",folder+"models\\linearc"+cost+"P.txt",folder+"results_linearc"+cost+".txt");
-			for (String gamma : gammas) {
-				evaluateModel("resources\\dev tweet labels.txt",folder+"models\\rbfc"+cost+"g"+gamma+"P.txt",folder+"results_rbfc"+cost+"g"+gamma+".txt");
-			}
-		}
-//		evaluateModel("resources\\dev tweet labels.txt",folder+"models\\rbfc-0g-1P.txt",folder+"results_rbfc-0g-1.txt");
+		String filename = "best_test_rbfc+1g-2";
+		evaluateModel("resources\\test tweet labels.txt",folder+filename+"P.txt",folder+filename+"_results.txt");
 	}
 	public static void evaluateModel(String locationOfActualLabels, String locationOfPredictedLabels, String locationOfOutput) {
 		try {
